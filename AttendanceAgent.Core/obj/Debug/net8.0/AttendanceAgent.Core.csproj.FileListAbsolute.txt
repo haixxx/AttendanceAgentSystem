@@ -1,0 +1,5 @@
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgent.Core\obj\Debug\net8.0\AttendanceAgent.Core.csproj.AssemblyReference.cache
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgent.Core\obj\Debug\net8.0\AttendanceAgent.Core.GeneratedMSBuildEditorConfig.editorconfig
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgent.Core\obj\Debug\net8.0\AttendanceAgent.Core.AssemblyInfoInputs.cache
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgent.Core\obj\Debug\net8.0\AttendanceAgent.Core.AssemblyInfo.cs
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgent.Core\obj\Debug\net8.0\AttendanceAgent.Core.csproj.CoreCompileInputs.cache
