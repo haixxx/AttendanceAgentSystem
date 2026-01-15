@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AttendanceAgent.Service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5697d0ca9078758773c092f88286a4c0c68e528e")]
 [assembly: System.Reflection.AssemblyProductAttribute("AttendanceAgent.Service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AttendanceAgent.Service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

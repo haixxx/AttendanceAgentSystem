@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Service\\AttendanceAgent.Service.csproj": {}
+    "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Service\\AttendanceAgent.Service.csproj": {}
   },
   "projects": {
-    "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj": {
+    "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj",
+        "projectUniqueName": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj",
         "projectName": "AttendanceAgent.Core",
-        "projectPath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj",
+        "projectPath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Core\\obj\\",
+        "outputPath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -115,14 +115,14 @@
         }
       }
     },
-    "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Service\\AttendanceAgent.Service.csproj": {
+    "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Service\\AttendanceAgent.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Service\\AttendanceAgent.Service.csproj",
+        "projectUniqueName": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Service\\AttendanceAgent.Service.csproj",
         "projectName": "AttendanceAgent.Service",
-        "projectPath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Service\\AttendanceAgent.Service.csproj",
+        "projectPath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Service\\AttendanceAgent.Service.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Service\\obj\\",
+        "outputPath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -140,8 +140,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj": {
-                "projectPath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj"
+              "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj": {
+                "projectPath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj"
               }
             }
           }

@@ -56,7 +56,7 @@ public class ApiService : IApiService
 
         var result = await response.Content.ReadFromJsonAsync<AgentRegistration>(cancellationToken: cancellationToken);
 
-        _logger.LogInformation("Agent registered successfully:  ID={AgentId}", result!.AgentId);
+        _logger.LogInformation("Agent registered successfully: ID={AgentId}", result!.AgentId);
 
         return result;
     }
@@ -116,7 +116,3 @@ public class ApiService : IApiService
 }
 
 public record AgentRegistration(int AgentId, string ApiKey);
-public record HeartbeatRequest(string Version, AgentStats Stats, int DriftMinutes);
-public record AgentStats(int Pulled, int Pushed, int Errors);
-public record IngestBatchRequest(string DeviceId, List<AttendanceEvent> Events, Dictionary<string, object> Cursor);
-public record IngestBatchResponse(int Processed, Dictionary<string, object>? AcceptedCursor);

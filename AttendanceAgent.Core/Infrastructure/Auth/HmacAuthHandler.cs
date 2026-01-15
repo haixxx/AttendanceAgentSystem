@@ -1,46 +1,65 @@
-﻿using System.Security.Cryptography;
+﻿using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace AttendanceAgent.Core.Infrastructure.Auth;
 
-public class HmacAuthHandler
+public class HmacAuthHandler : DelegatingHandler
 {
     private readonly string _clientId;
-    private readonly byte[] _secretBytes;
+    private readonly string _secretKey;
 
     public HmacAuthHandler(string clientId, string secretKey)
     {
-        _clientId = clientId ?? throw new ArgumentNullException(nameof(clientId));
+        if (string.IsNullOrEmpty(clientId))
+            throw new ArgumentNullException(nameof(clientId));
+        if (string.IsNullOrEmpty(secretKey))
+            throw new ArgumentNullException(nameof(secretKey));
 
-        if (string.IsNullOrWhiteSpace(secretKey))
-            throw new ArgumentException("Secret key cannot be empty", nameof(secretKey));
-
-        _secretBytes = Encoding.UTF8.GetBytes(secretKey);
+        _clientId = clientId;
+        _secretKey = secretKey;
     }
 
-    /// <summary>
-    /// Generates HMAC Authorization header value
-    /// Format:  HMAC {client_id}:{epoch_seconds}:{signature_hex}
-    /// </summary>
-    public string GenerateAuthHeader(string jsonBody)
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken)
     {
-        // 1. Get epoch seconds (UTC)
-        var epochSeconds = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        var timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
+        var nonce = Guid.NewGuid().ToString("N");
 
-        // 2. Prepare message:  body_bytes + timestamp_bytes
-        var bodyBytes = Encoding.UTF8.GetBytes(jsonBody);
-        var tsBytes = Encoding.UTF8.GetBytes(epochSeconds.ToString());
+        string contentHash = string.Empty;
+        if (request.Content != null)
+        {
+            var content = await request.Content.ReadAsByteArrayAsync(cancellationToken);
+            contentHash = Convert.ToBase64String(SHA256.HashData(content));
+        }
 
-        var message = new byte[bodyBytes.Length + tsBytes.Length];
-        Buffer.BlockCopy(bodyBytes, 0, message, 0, bodyBytes.Length);
-        Buffer.BlockCopy(tsBytes, 0, message, bodyBytes.Length, tsBytes.Length);
+        var method = request.Method.Method.ToUpperInvariant();
+        var path = request.RequestUri?.PathAndQuery ?? "/";
+        var signatureData = $"{_clientId}:{method}:{path}:{timestamp}:{nonce}:{contentHash}";
 
-        // 3. Compute HMAC-SHA256
-        using var hmac = new HMACSHA256(_secretBytes);
-        var hash = hmac.ComputeHash(message);
-        var sigHex = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+        var signature = ComputeHmacSignature(signatureData, _secretKey);
 
-        // 4. Return header value
-        return $"HMAC {_clientId}:{epochSeconds}:{sigHex}";
+        request.Headers.Add("X-Client-Id", _clientId);
+        request.Headers.Add("X-Timestamp", timestamp);
+        request.Headers.Add("X-Nonce", nonce);
+        request.Headers.Add("X-Signature", signature);
+
+        if (!string.IsNullOrEmpty(contentHash))
+        {
+            request.Headers.Add("X-Content-Hash", contentHash);
+        }
+
+        return await base.SendAsync(request, cancellationToken);
+    }
+
+    private static string ComputeHmacSignature(string data, string key)
+    {
+        var keyBytes = Encoding.UTF8.GetBytes(key);
+        var dataBytes = Encoding.UTF8.GetBytes(data);
+
+        using var hmac = new HMACSHA256(keyBytes);
+        var hash = hmac.ComputeHash(dataBytes);
+        return Convert.ToHexString(hash).ToLowerInvariant();
     }
 }

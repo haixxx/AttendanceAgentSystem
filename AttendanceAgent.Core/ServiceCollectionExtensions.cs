@@ -3,7 +3,6 @@ using AttendanceAgent.Core.Infrastructure.Auth;
 using AttendanceAgent.Core.Services;
 using AttendanceAgent.Core.Services.Api;
 using AttendanceAgent.Core.Services.Devices;
-using AttendanceAgent.Core.Services.Storage;
 using AttendanceAgent.Core.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,17 +20,15 @@ public static class ServiceCollectionExtensions
     {
         services.Configure<AgentConfiguration>(configuration);
 
-        services.AddHttpClient<IApiService, ApiService>((sp, client) =>
-        {
-            var config = sp.GetRequiredService<IOptions<AgentConfiguration>>().Value;
-            client.BaseAddress = new Uri(config.ServerUrl);
-        })
-        .AddHttpMessageHandler(sp =>
+        services.AddTransient<HmacAuthHandler>(sp =>
         {
             var config = sp.GetRequiredService<IOptions<AgentConfiguration>>().Value;
             return new HmacAuthHandler(config.Agent.Name, config.Agent.SecretKey);
-        })
-        .AddPolicyHandler(GetRetryPolicy());
+        });
+
+        services.AddHttpClient<IApiService, ApiService>()
+            .AddHttpMessageHandler<HmacAuthHandler>()
+            .AddPolicyHandler(GetRetryPolicy());
 
         services.AddSingleton<ILocalStore, LocalStore>();
         services.AddSingleton<IDeviceService, ZKTecoDeviceService>();

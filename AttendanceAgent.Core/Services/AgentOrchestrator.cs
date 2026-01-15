@@ -2,7 +2,7 @@
 using AttendanceAgent.Core.Models;
 using AttendanceAgent.Core.Services.Api;
 using AttendanceAgent.Core.Services.Devices;
-using AttendanceAgent.Core.Services.Storage;
+using AttendanceAgent.Core.Storage;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 

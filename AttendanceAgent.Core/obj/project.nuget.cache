@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "10KURJ/zg+k=",
+  "dgSpecHash": "8IoEhFkMRkI=",
   "success": true,
-  "projectFilePath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj",
+  "projectFilePath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Core\\AttendanceAgent.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.data.sqlite\\8.0.0\\microsoft.data.sqlite.8.0.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.0\\microsoft.data.sqlite.core.8.0.0.nupkg.sha512",
