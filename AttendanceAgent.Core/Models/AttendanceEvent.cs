@@ -5,19 +5,19 @@ namespace AttendanceAgent.Core.Models;
 public class AttendanceEvent
 {
     [JsonPropertyName("device_user_id")]
-    public string DeviceUserId { get; set; } = "";
+    public string DeviceUserId { get; set; } = string.Empty;
 
     [JsonPropertyName("event_time_local")]
-    public string EventTimeLocal { get; set; } = ""; // ISO8601: 2026-01-12T19:00:00+07:00
+    public string EventTimeLocal { get; set; } = string.Empty;
 
     [JsonPropertyName("event_time_utc")]
-    public string EventTimeUtc { get; set; } = ""; // ISO8601: 2026-01-12T12:00:00+00:00
+    public string EventTimeUtc { get; set; } = string.Empty;
 
     [JsonPropertyName("method")]
-    public string Method { get; set; } = "CARD"; // CARD, FINGER, FACE, PASSWORD, OTHER
+    public string Method { get; set; } = "CARD";
 
     [JsonPropertyName("direction")]
-    public string Direction { get; set; } = "UNKNOWN"; // IN, OUT, UNKNOWN
+    public string Direction { get; set; } = "IN";
 
     [JsonPropertyName("device_event_id")]
     public string? DeviceEventId { get; set; }
@@ -29,13 +29,13 @@ public class AttendanceEvent
 public class IngestBatchRequest
 {
     [JsonPropertyName("device_id")]
-    public string DeviceId { get; set; } = "";
+    public string DeviceId { get; set; } = string.Empty;
 
     [JsonPropertyName("batch_id")]
     public string? BatchId { get; set; }
 
     [JsonPropertyName("cursor")]
-    public Dictionary<string, object>? Cursor { get; set; }
+    public Dictionary<string, object> Cursor { get; set; } = new();
 
     [JsonPropertyName("events")]
     public List<AttendanceEvent> Events { get; set; } = new();

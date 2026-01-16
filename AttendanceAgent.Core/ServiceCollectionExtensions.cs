@@ -6,6 +6,7 @@ using AttendanceAgent.Core.Services.Devices;
 using AttendanceAgent.Core.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Polly;
 using Polly.Extensions.Http;
@@ -23,7 +24,8 @@ public static class ServiceCollectionExtensions
         services.AddTransient<HmacAuthHandler>(sp =>
         {
             var config = sp.GetRequiredService<IOptions<AgentConfiguration>>().Value;
-            return new HmacAuthHandler(config.Agent.Name, config.Agent.SecretKey);
+            var logger = sp.GetRequiredService<ILogger<HmacAuthHandler>>();
+            return new HmacAuthHandler(config.Agent.Name, config.Agent.SecretKey, logger);
         });
 
         services.AddHttpClient<IApiService, ApiService>()

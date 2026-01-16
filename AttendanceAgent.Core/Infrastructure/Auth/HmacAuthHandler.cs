@@ -1,6 +1,6 @@
-﻿using System.Net.Http.Headers;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace AttendanceAgent.Core.Infrastructure.Auth;
 
@@ -8,8 +8,9 @@ public class HmacAuthHandler : DelegatingHandler
 {
     private readonly string _clientId;
     private readonly string _secretKey;
+    private readonly ILogger<HmacAuthHandler>? _logger;
 
-    public HmacAuthHandler(string clientId, string secretKey)
+    public HmacAuthHandler(string clientId, string secretKey, ILogger<HmacAuthHandler>? logger = null)
     {
         if (string.IsNullOrEmpty(clientId))
             throw new ArgumentNullException(nameof(clientId));
@@ -18,48 +19,57 @@ public class HmacAuthHandler : DelegatingHandler
 
         _clientId = clientId;
         _secretKey = secretKey;
+        _logger = logger;
     }
 
     protected override async Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request,
         CancellationToken cancellationToken)
     {
-        var timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
-        var nonce = Guid.NewGuid().ToString("N");
-
-        string contentHash = string.Empty;
-        if (request.Content != null)
+        // Only add HMAC for /raw-events/ endpoints
+        if (request.RequestUri?.PathAndQuery.Contains("/raw-events/") == true)
         {
-            var content = await request.Content.ReadAsByteArrayAsync(cancellationToken);
-            contentHash = Convert.ToBase64String(SHA256.HashData(content));
-        }
+            var timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
-        var method = request.Method.Method.ToUpperInvariant();
-        var path = request.RequestUri?.PathAndQuery ?? "/";
-        var signatureData = $"{_clientId}:{method}:{path}:{timestamp}:{nonce}:{contentHash}";
+            byte[] bodyBytes = Array.Empty<byte>();
+            if (request.Content != null)
+            {
+                bodyBytes = await request.Content.ReadAsByteArrayAsync(cancellationToken);
+            }
 
-        var signature = ComputeHmacSignature(signatureData, _secretKey);
+            var signature = ComputeHmacSignature(bodyBytes, timestamp, _secretKey);
 
-        request.Headers.Add("X-Client-Id", _clientId);
-        request.Headers.Add("X-Timestamp", timestamp);
-        request.Headers.Add("X-Nonce", nonce);
-        request.Headers.Add("X-Signature", signature);
+            // Format:  Authorization:  HMAC client_id:timestamp:signature
+            var authValue = $"HMAC {_clientId}:{timestamp}:{signature}";
 
-        if (!string.IsNullOrEmpty(contentHash))
-        {
-            request.Headers.Add("X-Content-Hash", contentHash);
+            // CRITICAL: Remove existing Authorization header first! 
+            request.Headers.Remove("Authorization");
+
+            // Then add HMAC
+            request.Headers.TryAddWithoutValidation("Authorization", authValue);
+
+            _logger?.LogDebug("HMAC Auth - ClientId: {ClientId}, Timestamp: {Timestamp}, Signature:  {Signature}",
+                _clientId, timestamp, signature.Substring(0, 16) + "...");
         }
 
         return await base.SendAsync(request, cancellationToken);
     }
 
-    private static string ComputeHmacSignature(string data, string key)
+    private static string ComputeHmacSignature(byte[] bodyBytes, long timestamp, string secret)
     {
-        var keyBytes = Encoding.UTF8.GetBytes(key);
-        var dataBytes = Encoding.UTF8.GetBytes(data);
+        // message = body_bytes + timestamp_str.encode('utf-8')
+        var timestampBytes = Encoding.UTF8.GetBytes(timestamp.ToString());
+        var messageBytes = new byte[bodyBytes.Length + timestampBytes.Length];
 
+        Array.Copy(bodyBytes, 0, messageBytes, 0, bodyBytes.Length);
+        Array.Copy(timestampBytes, 0, messageBytes, bodyBytes.Length, timestampBytes.Length);
+
+        // HMAC-SHA256
+        var keyBytes = Encoding.UTF8.GetBytes(secret);
         using var hmac = new HMACSHA256(keyBytes);
-        var hash = hmac.ComputeHash(dataBytes);
+        var hash = hmac.ComputeHash(messageBytes);
+
+        // Return hex lowercase
         return Convert.ToHexString(hash).ToLowerInvariant();
     }
 }

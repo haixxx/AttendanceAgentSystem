@@ -1,10 +1,13 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using AttendanceAgent.Core.Configuration;
 using AttendanceAgent.Core.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Text.Encodings.Web;
+using System.Text;
 
 namespace AttendanceAgent.Core.Services.Api;
 
@@ -81,18 +84,51 @@ public class ApiService : IApiService
 
         response.EnsureSuccessStatusCode();
 
-        var devices = await response.Content.ReadFromJsonAsync<List<Device>>(cancellationToken: cancellationToken);
+        var jsonString = await response.Content.ReadAsStringAsync(cancellationToken);
+        _logger.LogDebug("Devices JSON response: {Json}", jsonString);
 
-        _logger.LogInformation("Fetched {Count} devices", devices?.Count ?? 0);
+        var jsonOptions = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
 
-        return devices ?? new List<Device>();
+        try
+        {
+            var wrapper = JsonSerializer.Deserialize<DevicesResponse>(jsonString, jsonOptions);
+
+            if (wrapper?.Ok == true && wrapper.Devices != null)
+            {
+                _logger.LogInformation("Fetched {Count} devices", wrapper.Devices.Count);
+                return wrapper.Devices;
+            }
+
+            _logger.LogWarning("Response OK={Ok}, Devices={Count}", wrapper?.Ok, wrapper?.Devices?.Count ?? 0);
+            return new List<Device>();
+        }
+        catch (JsonException ex)
+        {
+            _logger.LogError(ex, "Failed to deserialize devices.  Raw JSON: {Json}", jsonString);
+            return new List<Device>();
+        }
     }
 
     public async Task<IngestBatchResponse> IngestBatchAsync(IngestBatchRequest request, CancellationToken cancellationToken = default)
     {
-        var response = await _httpClient.PostAsJsonAsync(
-            "/api/attendance/ingest/batch/",
-            request,
+        // Custom JSON serialization options - KHÔNG escape unicode
+        var jsonOptions = new JsonSerializerOptions
+        {
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,  // ← QUAN TRỌNG! 
+            DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Never,
+            WriteIndented = false
+        };
+
+        // Serialize request to JSON string
+        var jsonString = JsonSerializer.Serialize(request, jsonOptions);
+        var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+        var response = await _httpClient.PostAsync(
+            "/api/attendance/raw-events/batch",
+            content,
             cancellationToken
         );
 
@@ -106,12 +142,20 @@ public class ApiService : IApiService
     public async Task UpdateCursorAsync(int deviceId, Dictionary<string, object> cursor, CancellationToken cancellationToken = default)
     {
         var response = await _httpClient.PostAsJsonAsync(
-            $"/api/attendance/devices/{deviceId}/cursor/",
+            $"/api/attendance/devices/{deviceId}/cursor",
             new { cursor },
             cancellationToken
         );
 
         response.EnsureSuccessStatusCode();
+    }
+    private class DevicesResponse
+    {
+        [JsonPropertyName("ok")]
+        public bool Ok { get; set; }
+
+        [JsonPropertyName("devices")]
+        public List<Device>? Devices { get; set; }
     }
 }
 

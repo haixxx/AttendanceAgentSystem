@@ -1,50 +1,52 @@
-﻿using AttendanceAgent.Core;
-using AttendanceAgent.Core.Services;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using System.Threading.Tasks;
+using AttendanceAgent.Core.Models;
+using AttendanceAgent.Core.Services.Devices;
 using Microsoft.Extensions.Logging;
-using Serilog;
 
-// Setup
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .CreateLogger();
-
-var configuration = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json", optional: false)
-    .Build();
-
-var services = new ServiceCollection();
-services.AddSingleton<IConfiguration>(configuration);
-services.AddLogging(builder => builder.AddSerilog());
-services.AddAttendanceAgentCore(configuration);
-
-var serviceProvider = services.BuildServiceProvider();
-
-// Run test
-Console.WriteLine("=== Attendance Agent - Test Console ===\n");
-
-try
+class Program
 {
-    var orchestrator = serviceProvider.GetRequiredService<IAgentOrchestrator>();
+    static async Task Main()
+    {
+        using var loggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddConsole(); // Requires Microsoft.Extensions.Logging.Console package
+        });
+        var logger = loggerFactory.CreateLogger<ZKTecoDeviceService>();
 
-    Console.WriteLine("1. Initializing agent...");
-    await orchestrator.InitializeAsync();
+        var svc = new ZKTecoDeviceService(logger);
 
-    Console.WriteLine("\n2. Running one cycle...");
-    await orchestrator.RunCycleAsync();
+        var device = new Device
+        {
+            Id = 2,
+            Host = "192.168.1.13",
+            Port = 4370,
+            Brand = "ZKTeco"
+        };
 
-    Console.WriteLine("\n3. Sending heartbeat...");
-    await orchestrator.SendHeartbeatAsync();
+        // Optional: check drift and sync time before reading logs
+        if (svc is IDeviceTimeSync timeSync)
+        {
+            var devTime = await timeSync.GetDeviceLocalTimeAsync(device);
+            if (devTime != null)
+            {
+                var driftSeconds = Math.Abs((devTime.Value - DateTime.Now).TotalSeconds);
+                if (driftSeconds > 120)
+                {
+                    Console.WriteLine($"Clock drift ~{(int)driftSeconds}s. Syncing device time...");
+                    var synced = await timeSync.SyncDeviceTimeAsync(device);
+                    Console.WriteLine($"Time sync: {(synced ? "OK" : "FAILED")}");
+                }
+            }
+        }
 
-    Console.WriteLine("\n✅ Test completed successfully!");
+        Console.WriteLine("Reading logs...");
+        var logs = await svc.ReadLogsAsync(device, null);
+
+        Console.WriteLine($"Read {logs.Count} logs");
+        foreach (var e in logs)
+        {
+            Console.WriteLine($"{e.DeviceUserId} | {e.EventTimeLocal} | {e.Method}/{e.Direction}");
+        }
+    }
 }
-catch (Exception ex)
-{
-    Console.WriteLine($"\n❌ Error: {ex.Message}");
-    Console.WriteLine(ex.StackTrace);
-}
-
-Console.WriteLine("\nPress any key to exit...");
-Console.ReadKey();

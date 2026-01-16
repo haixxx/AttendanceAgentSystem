@@ -1,3 +1,20 @@
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\commpro.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\comms.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\Delete_SDK_x64.bat
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\plcommpro.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\plcomms.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\plrscagent.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\plrscomm.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\pltcpcomm.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\plusbcomm.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\Register_SDK_x64.bat
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\rscagent.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\rscomm.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\tcpcomm.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\usbcomm.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\usbstd.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\zkemkeeper.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Dependencies\64bit\zkemsdk.dll
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\appsettings.Development.json
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\appsettings.json
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\AttendanceAgent.Console.exe
@@ -23,6 +40,8 @@ F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\Attendanc
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Microsoft.Extensions.Http.Polly.dll
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Microsoft.Extensions.Logging.Configuration.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Microsoft.Extensions.Logging.Console.dll
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
@@ -62,6 +81,7 @@ F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\Attendanc
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\AttendanceAgent.Core.dll
+F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\Interop.zkemkeeper.dll
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\bin\Debug\net8.0\AttendanceAgent.Core.pdb
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\obj\Debug\net8.0\AttendanceAgent.Console.csproj.AssemblyReference.cache
 F:\APP\code\AttendaceAgent\AttendanceAgentSystem\AttendanceAgentSystem\AttendanceAgent.Console\obj\Debug\net8.0\AttendanceAgent.Console.GeneratedMSBuildEditorConfig.editorconfig

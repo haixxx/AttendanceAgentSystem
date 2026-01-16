@@ -8,16 +8,19 @@ public class Device
     public int Id { get; set; }
 
     [JsonPropertyName("brand")]
-    public string Brand { get; set; } = "ZKTeco";
+    public string Brand { get; set; } = string.Empty;
+
+    [JsonPropertyName("connect_mode")]
+    public string ConnectMode { get; set; } = string.Empty;
 
     [JsonPropertyName("host")]
-    public string Host { get; set; } = "";
+    public string Host { get; set; } = string.Empty;
 
     [JsonPropertyName("port")]
-    public int Port { get; set; } = 4370;
+    public int Port { get; set; }
 
     [JsonPropertyName("timezone")]
-    public string Timezone { get; set; } = "Asia/Ho_Chi_Minh";
+    public string Timezone { get; set; } = string.Empty;
 
     [JsonPropertyName("is_active")]
     public bool IsActive { get; set; }
@@ -26,14 +29,8 @@ public class Device
     public Dictionary<string, object>? LastCursorJson { get; set; }
 
     [JsonPropertyName("sdk_profile")]
-    public string? SdkProfile { get; set; }
-}
+    public object? SdkProfile { get; set; }
 
-public class DeviceListResponse
-{
-    [JsonPropertyName("ok")]
-    public bool Ok { get; set; }
-
-    [JsonPropertyName("devices")]
-    public List<Device> Devices { get; set; } = new();
+    // Computed property for display name
+    public string DisplayName => $"{Brand} @ {Host}:{Port}";
 }
