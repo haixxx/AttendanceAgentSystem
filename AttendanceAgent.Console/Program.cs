@@ -1,52 +1,52 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AttendanceAgent.Core.Models;
-using AttendanceAgent.Core.Services.Devices;
+using AttendanceAgent.Core;
+using AttendanceAgent.Core.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 class Program
 {
-    static async Task Main()
+    static async Task Main(string[] args)
     {
-        using var loggerFactory = LoggerFactory.Create(builder =>
-        {
-            builder.AddConsole(); // Requires Microsoft.Extensions.Logging.Console package
-        });
-        var logger = loggerFactory.CreateLogger<ZKTecoDeviceService>();
-
-        var svc = new ZKTecoDeviceService(logger);
-
-        var device = new Device
-        {
-            Id = 2,
-            Host = "192.168.1.13",
-            Port = 4370,
-            Brand = "ZKTeco"
-        };
-
-        // Optional: check drift and sync time before reading logs
-        if (svc is IDeviceTimeSync timeSync)
-        {
-            var devTime = await timeSync.GetDeviceLocalTimeAsync(device);
-            if (devTime != null)
+        using var host = Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration(cfg =>
             {
-                var driftSeconds = Math.Abs((devTime.Value - DateTime.Now).TotalSeconds);
-                if (driftSeconds > 120)
+                cfg.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                   .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
+                   .AddEnvironmentVariables(prefix: "ATT_");
+            })
+            .ConfigureServices((ctx, services) =>
+            {
+                // Đăng ký toàn bộ core services qua extension method trong AttendanceAgent.Core
+                services.AddAttendanceAgentCore(ctx.Configuration);
+
+                // Logging mức thông tin
+                services.AddLogging(b =>
                 {
-                    Console.WriteLine($"Clock drift ~{(int)driftSeconds}s. Syncing device time...");
-                    var synced = await timeSync.SyncDeviceTimeAsync(device);
-                    Console.WriteLine($"Time sync: {(synced ? "OK" : "FAILED")}");
-                }
-            }
-        }
+                    b.AddConsole();
+                    b.SetMinimumLevel(LogLevel.Information);
+                });
+            })
+            .Build();
 
-        Console.WriteLine("Reading logs...");
-        var logs = await svc.ReadLogsAsync(device, null);
+        var logger = host.Services.GetRequiredService<ILogger<Program>>();
+        var orchestrator = host.Services.GetRequiredService<IAgentOrchestrator>();
 
-        Console.WriteLine($"Read {logs.Count} logs");
-        foreach (var e in logs)
+        try
         {
-            Console.WriteLine($"{e.DeviceUserId} | {e.EventTimeLocal} | {e.Method}/{e.Direction}");
+            await orchestrator.InitializeAsync();
+            await orchestrator.RunCycleAsync();
+            await orchestrator.SendHeartbeatAsync();
+
+            logger.LogInformation("Console run completed. Nhấn phím bất kỳ để thoát...");
+            Console.ReadKey();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Lỗi nghiêm trọng trong console runner");
         }
     }
 }

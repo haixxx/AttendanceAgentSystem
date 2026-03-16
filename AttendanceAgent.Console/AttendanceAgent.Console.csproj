@@ -2,27 +2,29 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
+		<!-- Đồng bộ với Core: net8.0-windows7.0 -->
+		<TargetFramework>net8.0-windows7.0</TargetFramework>
+		<Platforms>x64</Platforms>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="appsettings.Development.json" />
-	  <None Remove="appsettings.json" />
+		<None Remove="appsettings.Development.json" />
+		<None Remove="appsettings.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="appsettings.Development.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	  </Content>
-	  <Content Include="appsettings.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	  </Content>
+		<Content Include="appsettings.Development.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -31,10 +33,10 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
 		<PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
 		<PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\AttendanceAgent.Core\AttendanceAgent.Core.csproj" />
+		<!-- Bắt buộc: để có Host và HostBuilder -->
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<!-- Logging console -->
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -42,6 +44,7 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
+
 	<!-- Copy SDK DLLs vào output -->
 	<ItemGroup>
 		<None Include="Dependencies\64bit\**\*.*">
@@ -49,7 +52,7 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+	  <ProjectReference Include="..\AttendanceAgent.Core\AttendanceAgent.Core.csproj" />
 	</ItemGroup>
 
 </Project>
