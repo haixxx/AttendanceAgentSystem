@@ -1,32 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{C11DB2B0-9101-402D-8BE5-E7B988AA915F}|AttendanceAgent.Service\\AttendanceAgent.Service.csproj|f:\\app\\code\\attendaceagent\\attendanceagentsystem\\attendanceagentsystem\\attendanceagent.service\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{C11DB2B0-9101-402D-8BE5-E7B988AA915F}|AttendanceAgent.Service\\AttendanceAgent.Service.csproj|solutionrelative:attendanceagent.service\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{33DA698C-6F2D-498B-B4A0-F51B231E22AF}|AttendanceAgent.Console\\AttendanceAgent.Console.csproj|f:\\app\\code\\attendaceagent\\attendanceagentsystem\\attendanceagentsystem\\attendanceagent.console\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{33DA698C-6F2D-498B-B4A0-F51B231E22AF}|AttendanceAgent.Console\\AttendanceAgent.Console.csproj|solutionrelative:attendanceagent.console\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{33DA698C-6F2D-498B-B4A0-F51B231E22AF}|AttendanceAgent.Console\\AttendanceAgent.Console.csproj|f:\\app\\code\\attendaceagent\\attendanceagentsystem\\attendanceagentsystem\\attendanceagent.console\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{33DA698C-6F2D-498B-B4A0-F51B231E22AF}|AttendanceAgent.Console\\AttendanceAgent.Console.csproj|solutionrelative:attendanceagent.console\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B63DFF9A-40C3-441D-8847-EA6C41A76075}|AttendanceAgent.Core\\AttendanceAgent.Core.csproj|f:\\app\\code\\attendaceagent\\attendanceagentsystem\\attendanceagentsystem\\attendanceagent.core\\configuration\\agentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B63DFF9A-40C3-441D-8847-EA6C41A76075}|AttendanceAgent.Core\\AttendanceAgent.Core.csproj|solutionrelative:attendanceagent.core\\configuration\\agentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B63DFF9A-40C3-441D-8847-EA6C41A76075}|AttendanceAgent.Core\\AttendanceAgent.Core.csproj|f:\\app\\code\\attendaceagent\\attendanceagentsystem\\attendanceagentsystem\\attendanceagent.core\\services\\api\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B63DFF9A-40C3-441D-8847-EA6C41A76075}|AttendanceAgent.Core\\AttendanceAgent.Core.csproj|solutionrelative:attendanceagent.core\\services\\api\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{33DA698C-6F2D-498B-B4A0-F51B231E22AF}|AttendanceAgent.Console\\AttendanceAgent.Console.csproj|f:\\app\\code\\attendaceagent\\attendanceagentsystem\\attendanceagentsystem\\attendanceagent.console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33DA698C-6F2D-498B-B4A0-F51B231E22AF}|AttendanceAgent.Console\\AttendanceAgent.Console.csproj|solutionrelative:attendanceagent.console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -34,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -43,79 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Console\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "AttendanceAgent.Console\\appsettings.Development.json",
-              "ToolTip": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Console\\appsettings.Development.json",
-              "RelativeToolTip": "AttendanceAgent.Console\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-16T06:29:16.193Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AgentConfiguration.cs",
-              "DocumentMoniker": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Core\\Configuration\\AgentConfiguration.cs",
-              "RelativeDocumentMoniker": "AttendanceAgent.Core\\Configuration\\AgentConfiguration.cs",
-              "ToolTip": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Core\\Configuration\\AgentConfiguration.cs",
-              "RelativeToolTip": "AttendanceAgent.Core\\Configuration\\AgentConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T06:26:28.391Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Service\\appsettings.json",
-              "RelativeDocumentMoniker": "AttendanceAgent.Service\\appsettings.json",
-              "ToolTip": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Service\\appsettings.json",
-              "RelativeToolTip": "AttendanceAgent.Service\\appsettings.json",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABAAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-16T06:28:06.586Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Console\\appsettings.json",
-              "RelativeDocumentMoniker": "AttendanceAgent.Console\\appsettings.json",
-              "ToolTip": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Console\\appsettings.json",
-              "RelativeToolTip": "AttendanceAgent.Console\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-16T06:27:10.935Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ApiService.cs",
-              "DocumentMoniker": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Core\\Services\\Api\\ApiService.cs",
-              "RelativeDocumentMoniker": "AttendanceAgent.Core\\Services\\Api\\ApiService.cs",
-              "ToolTip": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Core\\Services\\Api\\ApiService.cs",
-              "RelativeToolTip": "AttendanceAgent.Core\\Services\\Api\\ApiService.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAA0wCIAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T06:26:58.064Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Console\\Program.cs",
-              "RelativeDocumentMoniker": "AttendanceAgent.Console\\Program.cs",
-              "ToolTip": "F:\\APP\\code\\AttendaceAgent\\AttendanceAgentSystem\\AttendanceAgentSystem\\AttendanceAgent.Console\\Program.cs",
-              "RelativeToolTip": "AttendanceAgent.Console\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T04:00:22.479Z"
             }
           ]
         }
